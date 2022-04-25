@@ -1,0 +1,648 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta content="IE=Edge" http-equiv="X-UA-Compatible">
+<meta name="robots" content="INDEX,FOLLOW,NOODP,NOYDIR"> <title>User Login</title>
+<meta property="og:description" content="User Login">
+<meta name="description" content="User Login">
+<meta name="keywords" content="ffxiv gil, ff14 gil, buy ffxiv gil, buy gil ffxiv, ffxiv buy gil, ffxiv gil buy, buy ff14 gil, ff14 buy gil">
+<link href="../themes/ffxiv4gil/style/style.css" rel="stylesheet">
+<link href="../themes/ffxiv4gil/style/nice-select.css" rel="stylesheet">
+<link href="../themes/ffxiv4gil/style/m_menu.css" rel="stylesheet">
+<link rel="canonical" href="">
+</head>
+<body class="home">
+<header class="header fixed">
+<div class="top desktop-only">
+<div class="container">
+<div class="left">
+<div class="logo_top">
+<a href="../index.html" title="ffxiv4gil Online Gamer Store">
+<img src="../themes/ffxiv4gil/images/logo.png" alt="BUYFFXIV4GIL.COM" class="logo_img">
+</a>
+</div>
+<div class="left-main-menu m_nav">
+<ul>
+<li>
+<a href="../final-fantasy-xiv-gil.html" title="Final Fantasy XIV Gil">
+Final Fantasy XIV Gil </a>
+</li>
+<li>
+<a href="../ffxiv-power-leveling.html" title="FFXIV Power Leveling">
+FFXIV Power Leveling </a>
+</li>
+
+</ul>
+</div>
+</div>
+<div class='right right_top'>
+<div class="left">
+</div>
+</div>
+</div>
+</div>
+<sidebar id="sidebar" class="mobile-only">
+<div class="left m_log_div">
+<a href="../index.html" title="ffxiv4gil Online Gamer Store" class="m_logo_img">
+<span></span>
+</a>
+</div>
+<div class="right m_right_c" id="nav">
+<a href="#nav" class="meanmenu-reveal meanclose top_h_menu">X</a>
+<a href="../order/cart.html" class="m_top_m">
+<img src="../themes/ffxiv4gil/images/m_cart.png" alt="shopping cart">
+(<span class="highshow" id="cart_number_m">0</span>)
+</a>
+<a href="" class="m_top_m">
+<img src="../themes/ffxiv4gil/images/m_login.png" alt="login and register">
+</a>
+</div>
+</sidebar>
+<div class="clear"></div>
+</header>
+<div class="wrap">
+<div class="content">
+<section class="body_main">
+<div class="container_breadcrumb ">
+<ol class="breadcrumb container">
+<ul class='breadcrumb'><li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="../index.html"><span itemprop="title">Home</span></a></li><li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href=""><span itemprop="title">Login</span></a></li></ul> </ol>
+</div>
+<section class="container body_c_main">
+<section class="body_content">
+<section class="page-body-all">
+<div class="container">
+<div>
+<div class="sectionTitle">
+<span class="name_title block-choose">Login or Register</span>
+</div>
+</div>
+<div class="card-container">
+<div class="card choose_card">
+<div class="card__content l_center">
+<h4 class="card__title">LOGIN</h4>
+<div class="container">
+<link href="../css.css" rel="stylesheet" type="text/css">
+<script type="dfc64d96d594a69431dc3208-text/javascript" src="../scripts/jquery_min.js"></script>
+<script src="../js/client.js" type="dfc64d96d594a69431dc3208-text/javascript"></script>
+<script type="dfc64d96d594a69431dc3208-text/javascript">
+    //google+ login
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        var id_token = googleUser.getAuthResponse().id_token;
+        var data = {
+            from: 'google',
+            id: profile.getId(),
+            id_token: id_token,
+            userName: profile.getName(),
+            imgUrl: profile.getImageUrl(),
+            email: profile.getEmail()
+        };
+        LoginApp(data);
+    }
+    var googleUser = {};
+    var startApp = function () {
+        gapi.load('auth2', function () {
+            // Retrieve the singleton for the GoogleAuth library and set up the client.
+            auth2 = gapi.auth2.init({
+                client_id: '107294295510-eeqv8ev64jt0h1a1tkr2i538jtp3mh7v.apps.googleusercontent.com',
+                cookiepolicy: 'single_host_origin',
+                // Request scopes in addition to 'profile' and 'email'
+                //scope: 'additional_scope'
+            });
+            attachSignin(document.getElementById('customBtn'));
+        });
+    };
+
+    function attachSignin(element) {
+        console.log(element.id);
+        auth2.attachClickHandler(element, {},
+                function (googleUser) {
+                    onSignIn(googleUser);
+                }, function (error) {
+            alert(JSON.stringify(error, undefined, 2));
+        });
+    }
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+    //facebook login
+    function statusChangeCallback(response) {
+        if (response.status === 'connected') {
+            var accessToken = response.authResponse.accessToken;
+            LoginFacebook(accessToken);
+        } else if (response.status === 'not_authorized') {
+            document.getElementById('status').innerHTML = 'Please log ' +
+                    'into this app.';
+        } else {
+            document.getElementById('status').innerHTML = 'Please log ' +
+                    'into Facebook.';
+        }
+    }
+    function checkLoginState() {
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
+    }
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '2075014959419027',
+            cookie: true, // enable cookies to allow the server to access 
+            // the session
+            xfbml: true, // parse social plugins on this page
+            version: 'v2.5' // use graph api version 2.5
+        });
+    };
+
+    // Load the SDK asynchronously
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id))
+            return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function LoginFacebook(accessToken) {
+        FB.api('/me', function (response) {
+            var data = {
+                from: 'facebook',
+                accessToken: accessToken,
+                id: response.id,
+                userName: response.name,
+                email: response.email
+            };
+            LoginApp(data);
+        });
+    }
+
+    //login website
+    function LoginApp(data) {
+        var url = "https://BUYFFXIV4GIL.COM/site/appLogin";
+        $.post(url, data, function (rdata) {
+            if (rdata == 1) {
+                var c_url = "https://BUYFFXIV4GIL.COM/order/cart";
+                window.location.href = c_url;
+            } else if (rdata == 2) {
+                var m_url = "https://BUYFFXIV4GIL.COM/sellCustomers/dashboard";
+                window.location.href = m_url;
+            } else {
+                alert(rdata);
+            }
+        });
+    }
+</script>
+<div class="app_login">
+<div class="div_facebook">
+<div id="status"></div>
+<div id="fblogin">
+Login with Facebook </div>
+</div>
+<div class="div_google">
+<div id="gSignInWrapper">
+<div id="customBtn" class="customGPlusSignIn">
+<span class="buttonText">Login with Google</span>
+</div>
+</div>
+<div id="name"></div>
+</div>
+</div>
+<div class="options-separator">
+<span>OR</span>
+</div>
+<form action="https://BUYFFXIV4GIL.COM/site/login" id="login_form" method="get" target="_top" class="-amp-form">
+<div class="form-group formField">
+<input name="LoginForm[username]" type="text" class="form-control" placeholder="Email">
+</div>
+<div class="form-group formField">
+<input name="LoginForm[password]" type="password" class="form-control" placeholder="Password">
+</div>
+<div class="form-group formField">
+<input type="submit" class="btn btn-primary" value="Login">
+</div>
+<div class="form-group formField">
+<p class="help-block"><a href="../forgetPassword.html" rel="nofollow">Forgot Password?</a></p>
+</div>
+</form>
+<script type="dfc64d96d594a69431dc3208-text/javascript">
+    $("#fblogin").click(function () {
+        FB.login(function (response) {
+            LoginFacebook(response);
+        }, {scope: 'email'});
+    });
+    startApp();
+</script> </div>
+</div>
+</div>
+<div class="card choose_card">
+<div class="card__content l_center">
+<h4 class="card__title">REGISTER</h4>
+<div class="container">
+<form id="sign-in" action="/site/sign" onsubmit="if (!window.__cfRLUnblockHandlers) return false; return checkForm()" method="post" data-cf-modified-dfc64d96d594a69431dc3208-="">
+<input type="hidden" name="rel_url" value="https://BUYFFXIV4GIL.COM/site/login">
+<input type="hidden" name="id" id="id"> <div class="form-group formField">
+<input type="text" class="form-control" placeholder="First Name" name="User[first_name]" value="" rel="required" rel-value="Please Enter First name!'">
+</div>
+<div class="form-group formField">
+<input type="text" class="form-control" placeholder="Last Name" name="User[last_name]" value="" rel="required" rel-value="Please Enter Last name!'">
+</div>
+<div class="form-group formField">
+<input type="text" class="form-control" placeholder="Email" name="User[email]" value="" rel="required" rel-value="Please Enter email!'" onchange="if (!window.__cfRLUnblockHandlers) return false; checkEmail(this)" data-cf-modified-dfc64d96d594a69431dc3208-="">
+</div>
+<div class="form-group formField">
+<input type="text" class="form-control" placeholder="Phone" name="User[phone]" value="" rel="required" rel-value="Please Enter phone!'">
+</div>
+<div class="form-group formField">
+<input type="password" class="form-control" placeholder="Password" name="User[password]" rel="required">
+</div>
+<div class="form-group formField">
+<input type="password" class="form-control" placeholder="Re-Password" name="User[confirm_password]" rel="required">
+</div>
+<div class="form-group formField">
+<input type="submit" class="btn btn-primary btn-block bg-color-3 border-color-3" value="Register">
+ </div>
+</form>
+<script type="dfc64d96d594a69431dc3208-text/javascript">
+    function checkForm() {
+        var sub = false;
+        $.each($("#sign-in input"), function (n, i) {
+            switch ($(i).attr("rel")) {
+                case 'required':
+                    if ($(i).val() == "") {
+                        alert($(i).attr("rel-value"));
+                        $(i).focus();
+                        sub = false;
+                        return false;
+                    } else {
+                        sub = true;
+                    }
+                    break;
+                case 'email':
+                    if (!isEmail($(i).val())) {
+                        alert('Please enter Email!');
+                        $(i).focus();
+                        return false;
+                        sub = false;
+                    } else {
+                        sub = true;
+                    }
+                    break;
+            }
+        });
+        if (sub === false) {
+            return false;
+        }
+        $.each($("#sign-in select"), function (n, i) {
+            switch ($(i).attr("rel")) {
+                case 'required':
+                    if ($(i).val() == "") {
+                        alert($(i).attr("rel-value"));
+                        $(i).focus();
+                        sub = false;
+                        return false;
+                    } else {
+                        sub = true;
+                    }
+                    break;
+            }
+        });
+        if (!'') {
+            if ($("#User_password").val() !== $("#User_confirm_password").val()) {
+                alert("Confirm Password error!");
+                sub = false;
+                return false;
+            }
+        }
+        return sub;
+    }
+    function isEmail(str) {
+        res = /^[0-9a-zA-Z_\-\.]+@[0-9a-zA-Z_\-]+[\.]{1}([0-9a-zA-Z_\-\.]+)+$/;
+        var re = new RegExp(res);
+        return !(str.match(re) == null);
+    }
+    function checkEmail(obj) {
+        var v_email = $(obj).val();
+        if (!isEmail(v_email)) {
+            alert("Your input Email address is Error!");
+            $(obj).val("");
+            $(obj).focus();
+            return false;
+        }
+        var url = "https://BUYFFXIV4GIL.COM/site/checkMail";
+        $.get(url, {mail: v_email}, function (data) {
+            if (data == 1) {
+                alert("This Mail Is Used!");
+                $(obj).val("");
+            }
+        });
+    }
+</script> </div>
+</div>
+</div>
+</div>
+</div>
+</section> </section>
+<section class="body_right">
+<div class="right_content">
+<div class="widget">
+<h4 class="right_title">Review & Rate</h4>
+<div class="widget_content">
+<div class="complete_list">
+<div class="xi">
+<p><span style="width: 92%"></span></p>
+<b class="col_right_rate">
+4.6 <font color="#222" size="4"> / 5</font>
+</b>
+</div>
+</div>
+<div class="clear"></div>
+<div class="rate_des">
+4.6 out of 5 (from 8190 gamers' ratings)
+</div>
+</div>
+</div>
+
+
+<div class="widget">
+<h4 class="right_title">Advantages</h4>
+<img src="../themes/ffxiv4gil/images/right-safe.jpg">
+McAfee secure testcerfication BUYFFXIV4GIL.COM has passed the test and certification of Mcafee,which is the most famous network secure vendor.This daily test will insure you a safety shopping
+<img src="../themes/ffxiv4gil/images/right-safe-2.jpg">
+</div>
+<div class="widget">
+<h4 class="right_title">Latest Orders Reviews</h4>
+<div class="widget_content">
+<ul class="complete_list right_list_order">
+<li>
+<div class="xi">
+<p><span style="width: 100%"></span></p>
+<b>By Jimenez</b>
+</div>
+<div class="name clearfix">
+<div class='c_p_name'>
+<ul class="complete_list_review">
+<li>
+<label>Product:</label>
+<p>14M Final Fantasy XIV Gil</p>
+<div class="clear"></div>
+</li>
+<li>
+<label>Add Time:</label>
+<p>Apr/25/2022</p>
+<div class="clear"></div>
+</li>
+<li>
+<label>Delivery Time:</label>
+<p>10 Mins</p>
+<div class="clear"></div>
+</li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<div class="xi">
+<p><span style="width: 80%"></span></p>
+<b>By Custorm</b>
+</div>
+<div class="name clearfix">
+<div class='c_p_name'>
+<ul class="complete_list_review">
+<li>
+<label>Product:</label>
+<p>2M Final Fantasy XIV Gil</p>
+<div class="clear"></div>
+</li>
+<li>
+<label>Add Time:</label>
+<p>Apr/25/2022</p>
+<div class="clear"></div>
+</li>
+<li>
+<label>Delivery Time:</label>
+<p>14 Hours</p>
+<div class="clear"></div>
+</li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<div class="xi">
+<p><span style="width: 100%"></span></p>
+<b>By Custorm</b>
+</div>
+<div class="name clearfix">
+<div class='c_p_name'>
+<ul class="complete_list_review">
+<li>
+<label>Product:</label>
+<p>10M Final Fantasy XIV Gil</p>
+<div class="clear"></div>
+</li>
+<li>
+<label>Add Time:</label>
+<p>Apr/25/2022</p>
+<div class="clear"></div>
+</li>
+<li>
+<label>Delivery Time:</label>
+<p>9 Mins</p>
+<div class="clear"></div>
+</li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<div class="xi">
+<p><span style="width: 100%"></span></p>
+<b>By Justin</b>
+</div>
+<div class="name clearfix">
+<div class='c_p_name'>
+<ul class="complete_list_review">
+<li>
+<label>Product:</label>
+<p>10M Final Fantasy XIV Gil</p>
+<div class="clear"></div>
+</li>
+<li>
+<label>Add Time:</label>
+<p>Apr/25/2022</p>
+<div class="clear"></div>
+</li>
+<li>
+<label>Delivery Time:</label>
+<p>6 Mins</p>
+<div class="clear"></div>
+</li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<div class="xi">
+<p><span style="width: 100%"></span></p>
+<b>By Jerry</b>
+</div>
+<div class="name clearfix">
+<div class='c_p_name'>
+<ul class="complete_list_review">
+<li>
+<label>Product:</label>
+<p>10M Final Fantasy XIV Gil</p>
+<div class="clear"></div>
+</li>
+<li>
+<label>Add Time:</label>
+<p>Apr/25/2022</p>
+<div class="clear"></div>
+</li>
+<li>
+<label>Delivery Time:</label>
+<p>7 Mins</p>
+<div class="clear"></div>
+</li>
+</ul>
+</div>
+</div>
+</li>
+<li class="c_more">
+<a href="../orderReply.html" title="more order feedback" rel="nofollow">
+More +
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="widget">
+<h4 class="right_title">Hot News And Guildes</h4>
+<div class="widget_content">
+<ul class="right_news_list">
+<li>
+<a href="../news/how-to-get-lost-ark-endgame-tier-3-gears.html" title="How to Get Lost Ark EndGame Tier 3 Gears?">How to Get Lost Ark EndGame Tier 3 Gears?</a>
+</li>
+<li>
+<a href="../news/how-to-get-radiant-twine-coating-in-final-fantasy-xiv.html" title="How to Get Radiant Twine & Coating in Final Fantasy XIV?">How to Get Radiant Twine & Coating in Final Fantasy XIV?</a>
+</li>
+<li>
+<a href="../news/ffxiv-endwalker-how-to-find-unlock-use-the-aether-compass.html" title="FFXIV Endwalker: How to Find, Unlock & Use the Aether Compass?">FFXIV Endwalker: How to Find, Unlock & Use the Aether Compass?</a>
+</li>
+<li>
+<a href="../news/how-to-get-calydontis-wivre-mount-on-final-fantasy-xiv.html" title="How to Get Calydontis & Wivre Mount on Final Fantasy XIV?">How to Get Calydontis & Wivre Mount on Final Fantasy XIV?</a>
+</li>
+<li>
+<a href="../news/final-fantasy-xiv-ocean-fishing-guide.html" title="Final Fantasy XIV - Ocean Fishing Guide">Final Fantasy XIV - Ocean Fishing Guide</a>
+</li>
+<li>
+<a href="../news/how-to-get-the-anima-weapons-in-final-fantasy-xiv.html" title="How To Get The Anima Weapons in Final Fantasy XIV?">How To Get The Anima Weapons in Final Fantasy XIV?</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="clear"></div> </div>
+</section>
+<div class="clear"></div>
+</section>
+</section>
+<footer>
+<div class="footer_links">
+<div class="container">
+<ul class="footerList">
+<li>
+<a href="../final-fantasy-xiv-gil.html" rel="" title="Final Fantasy XIV Gil" target="">
+Final Fantasy XIV Gil </a>
+</li>
+<li>
+<a href="../index.html" rel="" title="FFXIV Gil" target="">
+FFXIV Gil </a>
+</li>
+<li>
+<a href="../ffxiv-power-leveling.html" rel="" title="FFXIV Power leveling" target="">
+FFXIV Power leveling </a>
+</li>
+<li>
+<a href="../index.html" rel="" title="Buy FFXIV Gil" target="">
+Buy FFXIV Gil </a>
+</li>
+<li>
+<a href="../final-fantasy-xiv-gil.html" rel="" title="Buy FF14 Gil" target="_blank">
+Buy FF14 Gil </a>
+</li>
+<li>
+<a href="javascript:;" rel="nofollow" title="Final Fantasy XIV" target="_blank">
+Final Fantasy XIV </a>
+</li>
+<li>
+<a href="javascript:;" rel="nofollow" title="Final Fantasy XIV Wiki" target="_blank">
+Final Fantasy XIV Wiki </a>
+</li>
+<li>
+<a href="javascript:;" rel="" title="FFXIV Gil Cheap" target="">
+FFXIV Gil Cheap </a>
+</li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+<div class="hdLinks">
+<a href="javascript:;" target="_blank">
+<img src="../themes/ffxiv4gil/images/facebook.png" alt="facebook">
+</a>
+<a href="javascript:;" target="_blank">
+<img src="../themes/ffxiv4gil/images/google.png" alt="google">
+</a>
+<a href="javascript:;" target="_blank">
+<img src="../themes/ffxiv4gil/images/twitter.png" alt="twitter">
+</a>
+<a href="javascript:;" target="_blank">
+<img src="../themes/ffxiv4gil/images/youtube.png" alt="youtube">
+</a>
+</div>
+<div class="clear"></div>
+<div style="text-align: center;">
+<img src="../images/ffxiv4gil-pay_buttom.png">
+</div>
+<div class="clear"></div>
+<div class="container footer-bottom">
+Copyright © 2009-2022
+<a href="../index.html" title="BUYFFXIV4GIL.COM" style="color:#c5c5c5;">buyffxiv4gil.com</a>.All rights reserved.
+<a href="javascript:;" title="Sitemap" style="color:#c5c5c5;">Sitemap</a><br>
+<a href="../terms-and-conditions.html" title="Terms and Conditions" style="color:#c5c5c5;">Terms and Conditions</a>
+<a href="../privacy-policy.html" title="Privacy Policy" style="color:#c5c5c5;">Privacy Policy</a>
+</div>
+</footer>
+</div>
+</div>
+<section id="top_go" class="top_class">
+<a href="javascript:;" target="_blank" title="7x24 online livechat">
+<img src="../images/live-chat.svg" alt="7x24 online livechat">
+</a>
+<a href="#pageTop" id="goPageTop" title="go page top">
+<img src="../images/go-top-page.svg" alt="go page top">
+</a>
+</section>
+<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="dfc64d96d594a69431dc3208-|49" defer=""></script></body>
+<script type="dfc64d96d594a69431dc3208-text/javascript" src="../scripts/jquery_min.js"></script>
+<script type="dfc64d96d594a69431dc3208-text/javascript" src="../scripts/jquery.meanmenu.min.js"></script>
+<script type="dfc64d96d594a69431dc3208-text/javascript" src="../scripts/main_menu.js"></script>
+<script type="dfc64d96d594a69431dc3208-text/javascript" src="../scripts/jquery.bt.min.js"></script>
+<script type="dfc64d96d594a69431dc3208-text/javascript" src="../scripts/main.js"></script>
+<div style="display:none">
+
+<script async="" src="../gtag/js.js" type="dfc64d96d594a69431dc3208-text/javascript"></script>
+<script type="dfc64d96d594a69431dc3208-text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-161166349-1');
+</script> </div>
+</html>
